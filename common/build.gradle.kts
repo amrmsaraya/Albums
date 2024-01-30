@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.github.amrmsaraya.albums.data"
+    namespace = "com.github.amrmsaraya.albums.common"
     compileSdk = Configuration.compileSdk
 
     defaultConfig {
@@ -35,25 +35,23 @@ android {
     kotlinOptions {
         jvmTarget = Configuration.jvmTarget
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
+    }
 }
 
 dependencies {
-    implementation(project(":common"))
-    implementation(project(":domain"))
-
     // Coroutines
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
-    // Retrofit
-    implementation(libs.retrofit)
-
-    // Moshi
-    implementation(libs.moshi)
-    implementation(libs.moshi.kotlin)
-    implementation(libs.moshi.adapters)
-
     // Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler.dagger.ksp)
+    implementation(libs.hilt.navigation.compose)
 }
