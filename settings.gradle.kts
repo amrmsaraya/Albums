@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "Albums"
 include(":app")
 include(":network")
+include(":domain")
