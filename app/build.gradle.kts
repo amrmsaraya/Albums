@@ -61,6 +61,7 @@ android {
 
 dependencies {
     // Local Modules
+    implementation(project(":data"))
     implementation(project(":domain"))
 
     // Core

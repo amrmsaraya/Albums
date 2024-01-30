@@ -5,5 +5,5 @@ data class Address(
     val suite: String,
     val city: String,
     val zipcode: String,
-    val geo: Geo
+    val geo: Geo?
 )
