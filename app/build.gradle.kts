@@ -63,6 +63,7 @@ dependencies {
     // Local Modules
     implementation(project(":data"))
     implementation(project(":domain"))
+    implementation(project(":presentation"))
 
     // Core
     implementation(libs.androidx.core.ktx)

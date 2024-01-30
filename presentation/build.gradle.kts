@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.github.amrmsaraya.albums.data"
+    namespace = "com.github.amrmsaraya.albums.presentation"
     compileSdk = Configuration.compileSdk
 
     defaultConfig {
@@ -35,26 +35,46 @@ android {
     kotlinOptions {
         jvmTarget = Configuration.jvmTarget
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
+    }
 }
 
 dependencies {
     implementation(project(":common"))
-    implementation(project(":network"))
     implementation(project(":domain"))
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
-    // Retrofit
-    implementation(libs.retrofit)
-
-    // Moshi
-    implementation(libs.moshi)
-    implementation(libs.moshi.kotlin)
-    implementation(libs.moshi.adapters)
-
     // Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler.dagger.ksp)
+    implementation(libs.hilt.navigation.compose)
+
+    // Lifecycle
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.runtime.compose)
+    implementation(libs.androidx.lifecycle.viewModel.ktx)
+    implementation(libs.androidx.lifecycle.viewModel.compose)
+
+    // Compose
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.util)
+    implementation(libs.androidx.compose.ui.tooling)
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.material3)
+
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+
+    // Coil
+    implementation(libs.coil.compose)
 }

@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import com.github.amrmsaraya.albums.presentation.app.App
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,9 +22,7 @@ class MainActivity : ComponentActivity() {
 
         // SplashScreen
         val splash = installSplashScreen()
-        var keepSplash = true
-        splash.setKeepOnScreenCondition { keepSplash }
 
-        setContent { }
+        setContent { App() }
     }
 }
