@@ -19,7 +19,7 @@ internal fun NavController.navigateToProfile(navOptions: NavOptions? = null) {
 
 internal fun NavGraphBuilder.profileScreen(
     onShowSnackbar: suspend (message: String, actionLabel: String?) -> Boolean,
-    onNavigateToPhotos: (albumId: Int) -> Unit
+    onNavigateToPhotos: (albumId: Int, albumTitle: String) -> Unit
 ) {
     composable(route = profileRoute) {
         val viewModel = hiltViewModel<ProfileViewModel>()

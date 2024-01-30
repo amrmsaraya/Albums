@@ -24,14 +24,25 @@ android {
         }
     }
 
+    // Just to help you trying compose in release build because it's much faster than debug build
+    signingConfigs {
+        create("release") {
+            storeFile = file("../app/release_key.jks")
+            keyAlias = "release"
+            storePassword = "releasepassword"
+            keyPassword = "releasepassword"
+        }
+    }
+
     buildTypes {
         release {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 
@@ -61,6 +72,7 @@ android {
 
 dependencies {
     // Local Modules
+    implementation(project(":network"))
     implementation(project(":data"))
     implementation(project(":domain"))
     implementation(project(":presentation"))

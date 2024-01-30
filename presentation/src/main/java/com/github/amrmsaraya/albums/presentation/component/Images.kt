@@ -7,21 +7,23 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
+import kotlinx.coroutines.Dispatchers
 
 @Composable
 fun AppImage(
-    url: String,
+    url: String?,
     modifier: Modifier = Modifier,
     contentScale: ContentScale = ContentScale.Crop
 ) {
     SubcomposeAsyncImage(
         modifier = modifier,
         model = ImageRequest.Builder(LocalContext.current)
+            .dispatcher(Dispatchers.IO)
             .data(url)
             .crossfade(500)
             .allowHardware(false)
             .build(),
-        loading = { },
+        loading = { Shimmer(Modifier.matchParentSize()) },
         alignment = Alignment.Center,
         contentDescription = null,
         contentScale = contentScale,

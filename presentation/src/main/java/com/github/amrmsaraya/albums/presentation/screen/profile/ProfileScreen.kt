@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.github.amrmsaraya.albums.presentation.R
 import com.github.amrmsaraya.albums.presentation.component.Shimmer
@@ -33,7 +34,7 @@ fun ProfileScreen(
     state: ProfileState,
     onIntent: (ProfileIntent) -> Unit,
     onShowSnackbar: suspend (message: String, actionLabel: String?) -> Boolean,
-    onNavigateToPhotos: (albumId: Int) -> Unit
+    onNavigateToPhotos: (albumId: Int, albumTitle: String) -> Unit
 ) {
     val address by remember(state.user) {
         mutableStateOf(
@@ -103,7 +104,7 @@ fun ProfileScreen(
                 ) { album ->
                     Album(
                         album.title, showDivider = album.id != state.albums.lastOrNull()?.id,
-                        onClick = { onNavigateToPhotos(album.id) }
+                        onClick = { onNavigateToPhotos(album.id, album.title) }
                     )
                 }
             }
@@ -159,7 +160,9 @@ private fun Album(
                 .padding(vertical = 16.dp),
             text = title,
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurface
+            color = MaterialTheme.colorScheme.onSurface,
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 1
         )
         if (showDivider) HorizontalDivider()
     }

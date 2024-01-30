@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.github.amrmsaraya.albums.presentation.screen.photos.navigateToPhotos
+import com.github.amrmsaraya.albums.presentation.screen.photos.photosScreen
 import com.github.amrmsaraya.albums.presentation.screen.profile.profileRoute
 import com.github.amrmsaraya.albums.presentation.screen.profile.profileScreen
 
@@ -25,7 +27,12 @@ fun AppNavHost(
     ) {
         profileScreen(
             onShowSnackbar = onShowSnackbar,
-            onNavigateToPhotos = {}
+            onNavigateToPhotos = navController::navigateToPhotos
+        )
+
+        photosScreen(
+            onShowSnackbar = onShowSnackbar,
+            onBackClick = navController::popBackStack
         )
     }
 }
